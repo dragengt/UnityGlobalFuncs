@@ -79,6 +79,26 @@ public class GameObjFunc
     }
 
     /// <summary>
+    /// 协程：移动一个物体到指定位置
+    /// </summary>
+    public static IEnumerator IMoveUIToRectTransPos(Transform srcRT, Vector3 targetPos, CallbackFunc onDone = null)
+    {
+        float timePassed = 0F;
+        Vector3 v3Src = srcRT.position;
+        while (timePassed <= 1)
+        {
+            srcRT.position = Vector3.Lerp(v3Src, targetPos, timePassed);
+
+            timePassed += Time.deltaTime;
+            yield return 1;
+        }
+        if (onDone != null)
+        {
+            onDone();
+        }
+    }
+
+    /// <summary>
     /// 发起一个持续一段时间的Update函数，每一帧更新
     /// </summary>
     /// <param name="continueTime">更新持续的时间</param>
