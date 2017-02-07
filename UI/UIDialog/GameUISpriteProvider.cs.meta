@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e1e547fed50aa2c45aba920965a819a5
+timeCreated: 1474015631
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - m_UISprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  - m_UIKnob: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  - m_UIInputFieldBG: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - m_UIDownArrow: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  - m_UICheckMark: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  - m_UIBG: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
