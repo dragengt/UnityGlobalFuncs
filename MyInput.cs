@@ -216,13 +216,15 @@ public class MyInput : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
     #region --鼠标或者Touch输入
     //--预判用--：#if UNITY_EDITOR || UNITY_STANDALONE
 
+    
     /// <summary>
-    /// 触摸或鼠标按下
+    /// 触摸或鼠标按下。（默认鼠标判断左键）
     /// </summary>
-    public static bool GetMouseDown()
+    /// <param name="mouseId">0=左键，1=右键，2=中键.对于触控时无参数影响</param>
+    public static bool GetMouseDown(int mouseId = 0)
     {
 #if UNITY_EDITOR || UNITY_STANDALONE
-        return Input.GetMouseButtonDown(0);
+        return Input.GetMouseButtonDown(mouseId);
 #else
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -238,7 +240,8 @@ public class MyInput : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
     /// <summary>
     /// 触摸或鼠标按下
     /// </summary>
-    public static bool GetMouseUp()
+    /// <param name="mouseId">0=左键，1=右键，2=中键.对于触控时无参数影响</param>
+    public static bool GetMouseUp(int mouseId=0)
     {
 #if UNITY_EDITOR || UNITY_STANDALONE
         return Input.GetMouseButtonUp(0);
@@ -331,7 +334,7 @@ EventSystem.current.IsPointerOverGameObject() == false//false即为非UI
 
     
     /// <summary>
-    /// 触摸或鼠标正在按住
+    /// 触摸或鼠标左键正在按住
     /// </summary>
     public static bool GetMouse()
     {
