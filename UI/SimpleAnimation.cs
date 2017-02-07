@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+
 namespace Game
 {
+    /// <summary>
+    /// 实现简单的切换动画帧、UI帧
+    /// </summary>
 	public class SimpleAnimation : MonoBehaviour 
 	{
         

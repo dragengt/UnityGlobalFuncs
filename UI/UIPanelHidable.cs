@@ -7,6 +7,9 @@ namespace Game.UI
     [RequireComponent(typeof(LayoutElement))]
     [RequireComponent(typeof(Toggle))]
 
+    /// <summary>
+    /// 利用Toggle实现的抽屉式Panel，点击时可变换大小
+    /// </summary>
 	class UIPanelHidable:MonoBehaviour
 	{
         //--子物体：需要隐藏的panel部分

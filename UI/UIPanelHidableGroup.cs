@@ -7,7 +7,7 @@ namespace Game.UI
     [RequireComponent(typeof (VerticalLayoutGroup))]
     [RequireComponent(typeof (ToggleGroup))]
     /// <summary>
-    /// 可隐藏Panel的管理器
+    /// 可隐藏Panel的管理器,类似于toggleGroup，添加于父物体即可；
     /// </summary>
 	class UIPanelHidableGroup:MonoBehaviour
 	{

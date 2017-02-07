@@ -8,6 +8,7 @@ namespace Game.UI.Component
     /// <summary>
     /// 游戏中的主要画布，用于游戏play时的主界面服务；
     /// </summary>
+    /// <remarks>挂载在主Canvas上即可实现单例获取</remarks>
 	public class MainGameCanvas : MonoBehaviour 
 	{
         //如果有指定UIContainer，则此将作为Canvas的RectTransform，否则Canvas根为Canvas

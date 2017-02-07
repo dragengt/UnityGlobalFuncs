@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace Game.UI
 {
     /// <summary>
-    /// 于UI物体，使之成为一个可以滚动的物体（如滚动多页窗口）
+    /// 于UI物体，使之成为一个可以上下滚动的物体（如滚动多页窗口）。
     /// </summary>
 	public class UIPanelScrollable : MonoBehaviour 
 	{

@@ -10,7 +10,9 @@ using Game.UI.Inner;
 
 namespace Game.UI
 {
-
+    /// <summary>
+    /// 提供各种UI操作中常用的函数
+    /// </summary>
 	public class GameUIFuncs 
 	{
         /// <summary>

@@ -18,6 +18,9 @@ public delegate int IntCallbackFunc();
 public delegate int IntCallbackFuncWithInt(int param);
 public delegate int IntCallbackFuncWithFloat(float param);
 
+/// <summary>
+/// 提供各种游戏物体中常用的函数；
+/// </summary>
 public class GameObjFunc
 {
 
