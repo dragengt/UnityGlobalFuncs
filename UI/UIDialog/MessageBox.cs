@@ -161,8 +161,9 @@ namespace Game.UI
         /// <summary>
         /// 显示对话信息（RPG用对话）
         /// </summary>
+        /// <param name="speakerName">讲话者的名字，会显示在边框左上角</param>
         /// <param name="onClick">显示完成后，点击时的事件</param>
-        public static void ShowDialogMsg(string dialogMsg,CallbackFunc onClick = null, CallbackFunc onShowedOver = null)
+        public static void ShowDialogMsg(string dialogMsg,string speakerName,CallbackFunc onClick = null, CallbackFunc onShowedOver = null)
         {
             #region 设置Dialog
             //Give me a canvas 
@@ -191,7 +192,7 @@ namespace Game.UI
             GameUIFuncs.SetRectTransSize(nameImg.rectTransform, 0, 0.98F, 0.2F, 0.2F);
 
             //Give me a text for name & attach it to img:
-            Text nameText = GameUIFuncs.CreateText("name",nameImg.rectTransform, TextAnchor.MiddleCenter);
+            Text nameText = GameUIFuncs.CreateText(speakerName,nameImg.rectTransform, TextAnchor.MiddleCenter);
 
             //Set the rect:
             GameUIFuncs.SetRectTransSize(nameText.rectTransform, 0,0, 1, 1);
@@ -253,7 +254,7 @@ namespace Game.UI
         public static void ShowDialogMsgs(DialogMsg[] arrDialogs , int currDialogIndex = 0, CallbackFunc onDialogsShowedDone = null)
         {
             //TODO: Show dialogs one by one
-            ShowDialogMsg(arrDialogs[currDialogIndex].msg, () =>
+            ShowDialogMsg(arrDialogs[currDialogIndex].msg,arrDialogs[currDialogIndex].speakerName ,() =>
                 {
                     Debug.Log("CLick>");
 
