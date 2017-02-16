@@ -24,11 +24,13 @@ namespace Game.Global.Buffer
         {
             m_bufferList = new Stack<GameObject>(defaultCount * 2);
 
+            GameObject obj;
             for (int i = 0; i < defaultCount; i++)
             {
-                m_bufferList.Push(
-                    GameObject.Instantiate(objPrefab)
-                    );
+                obj = GameObject.Instantiate(objPrefab);
+                m_bufferList.Push(obj);
+
+                obj.SetActive(false);
             }
         }
 
@@ -63,9 +65,11 @@ namespace Game.Global.Buffer
             if (m_bufferList.Count <= 0)
             {
                 //再复制一个：
-                m_bufferList.Push(
-                    GameObject.Instantiate(result));
+                m_bufferList.Push( GameObject.Instantiate(result) );
             }
+
+            //显示出来：
+            result.SetActive(true);
 
             return result;
         }
@@ -76,7 +80,21 @@ namespace Game.Global.Buffer
         /// <param name="obj"></param>
         public void PushObject(GameObject obj)
         {
+            obj.SetActive(false);
+
             m_bufferList.Push(obj);
+        }
+
+        /// <seealso cref="PushObject()"/>
+        public void DestroyObject(GameObject obj)
+        {
+            PushObject(obj);
+        }
+
+        /// <seealso cref="PopObjectBuffered()"/>
+        public GameObject InstantiateObj()
+        {
+            return PopObjectBuffered();
         }
     }
 }
