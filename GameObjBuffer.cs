@@ -10,7 +10,7 @@ namespace Game.Global.Buffer
     {
         Stack<GameObject> m_bufferList;
 
-        public GameObjBuffer(GameObject objPrefab, int defaultCount)
+        public GameObjBuffer(GameObject objPrefab, int defaultCount = 3)
         {
             InitBuffer(objPrefab, defaultCount);
         }
