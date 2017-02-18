@@ -451,20 +451,39 @@ namespace Game.UI
             clickable.SetOnClickListener(onClick, onClickeDown,onClickUp);
         }
 
-        public static void SetUISubmitListener(InputField input, CallbackFunc onSubmit)
+        /// <summary>
+        /// 设置ui可在鼠标/触控进入时监听enter、exit事件
+        /// </summary>
+        public static void SetUIHoverListener(RectTransform uiObj, CallbackFunc onEnter=null, CallbackFunc onExit=null)
         {
-            input.onEndEdit.AddListener(
-                (string msg) =>
-                {
-                    if (Input.GetKeyDown(KeyCode.Return))
-                    {
-						//Debug.Log ("enter");
-                        if(onSubmit!=null)
-						{
-                            onSubmit();
-						}
-                    }
-                });
+            GameUIEnterExitable exable = uiObj.GetComponent<GameUIEnterExitable>();
+            if (exable == null)
+                exable = uiObj.gameObject.AddComponent<GameUIEnterExitable>();
+
+            if(onEnter!=null)
+                exable.SetOnEnterListener(onEnter);
+
+            if(onExit!=null)
+                exable.SetOnExitListener(onExit);
+ 
+        }
+
+        /// <summary>
+        /// 设置UI可被鼠标进入，且能监听鼠标/触控的Enter事件
+        /// </summary>
+        /// <seealso cref="SetUIHoverListener"/>
+        public static void SetUIEnterListener(RectTransform uiObj, CallbackFunc onEnter)
+        {
+            SetUIHoverListener(uiObj, onEnter);
+        }
+
+        /// <summary>
+        /// 设置UI可被鼠标进入，且能监听鼠标/触控的Exit事件
+        /// </summary>
+        /// <seealso cref="SetUIHoverListener"/>
+        public static void SetUIExitListener(RectTransform uiObj,CallbackFunc onExit)
+        {
+            SetUIHoverListener(uiObj, null, onExit);
         }
 
         /// <summary>

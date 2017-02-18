@@ -1,3 +1,12 @@
 2017年2月13日10:33:29
 	加入obj 的buffer机制；
 	加入日志；
+
+2017年2月18日22:03:36
+	增加UI监听Enter、Exit的函数和事件：
+	调用方法：
+	Game.UI.GameUIFuncs.SetUIHoverListener(m_uiToTest, 
+                () => action ,
+                
+                () => action2
+                );
