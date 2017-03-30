@@ -8,7 +8,7 @@ namespace Game.UI
     /// <summary>
     /// 用于增强RectTransform管理子UI的行为：将这个脚本添加到对应的UI上，并设置《string，transform》，则RectTransform将可以获得对应string下的transform
     /// </summary>
-	public class UIRectTransManager : MonoBehaviour 
+	public class UIRectTransExtend : MonoBehaviour 
 	{
         [Tooltip("link to child with id")]
         /// <summary>
