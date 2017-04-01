@@ -32,7 +32,7 @@ namespace Game.UI
         }
 
         /// <summary>
-        /// 获得Transform的子物体中第一个含有该名字的物体
+        /// 获得Transform的子物体（及其后代）中第一个含有该名字的物体。适用于需要深度搜索的情况
         /// </summary>
         /// <param name="childObjName">子物体的名字</param>
         public static RectTransform GetChildByName(this RectTransform parent, string childObjName)
@@ -67,6 +67,61 @@ namespace Game.UI
             //Not found
             return null;
         }
+
+        /// <summary>
+        /// 采用广度优先的方式查找Transform的子物体（及其后代）中第一个含有该名字的物体。适用于无需太多深度搜索的情况；
+        /// </summary>
+        public static RectTransform GetChildByName(this RectTransform parent, string childObjName,bool useBFS)
+        {
+            //深度优先（BFS）找到该名字的RectTransform 
+            //使用一个栈进行遍历 =_=
+            System.Collections.Generic.Queue<Transform> stack =
+                new System.Collections.Generic.Queue<Transform>();
+
+            //--将parent入栈
+            stack.Enqueue(parent);
+
+            Transform tmp;
+            //--BFS开始
+            while (stack.Count > 0)
+            {
+                tmp = stack.Dequeue();
+
+                if (tmp.name.Equals(childObjName))
+                {
+                    //Great, got it
+                    return (RectTransform)tmp;
+                }
+
+                //--push back the children
+                for (int i = 0; i <tmp.childCount ; i++)
+                {
+                    stack.Enqueue(tmp.GetChild(i));
+                }
+            }
+
+            //Not found
+            return null;
+        }
+
         
+        [System.Obsolete("Use FindChild() instead")]
+        /// <summary>
+        /// Returns a transform child by name.
+        /// 获得在子物体中（只包含第一代子物体）的物体
+        /// </summary>
+        /// <seealso cref="Transform.FindChild()"/>
+        public static RectTransform GetChild(this RectTransform parent, string childObjName)
+        {
+            for (int i = 0; i < parent.childCount; i++)
+            {
+                if (parent.GetChild(i).name.Equals(childObjName))
+                {
+                    return (RectTransform) parent.GetChild(i);
+                }
+            }
+
+            return null;
+        }
 	}
 }
