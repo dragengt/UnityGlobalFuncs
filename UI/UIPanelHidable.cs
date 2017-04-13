@@ -47,7 +47,7 @@ namespace Game.UI
         /// <summary>
         /// 在需要时对Toggle的valueChanged进行事件的注册，以实现勾选时的显示/隐藏效果
         /// </summary>
-        private void OnEnable()
+        private void Awake()
         {
             if (m_registClick)
             {
