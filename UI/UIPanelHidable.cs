@@ -8,17 +8,25 @@ namespace Game.UI
     [RequireComponent(typeof(Toggle))]
 
     /// <summary>
-    /// 利用Toggle实现的抽屉式Panel，点击时可变换大小
+    /// 利用Toggle实现的抽屉式Panel，点击时可变换大小。
     /// </summary>
+    ///<remarks>如果是手工创建的，则需要确保registClick勾选，才会默认产生点击时的隐藏/显示事件</remarks>
 	class UIPanelHidable:MonoBehaviour
 	{
+        public enum HideDirection { Vertical, Horizontal, };
+
         //--子物体：需要隐藏的panel部分
         [SerializeField]RectTransform m_hidablePanel;
-        
-        //--默认（隐藏内容panel）时的大小
-        [SerializeField]int m_defaultHeight;
-        //--展开Panel时的大小
-        [SerializeField]int m_expandHeight;
+
+        [SerializeField]HideDirection m_hideDirection = HideDirection.Vertical;
+
+        //--默认（隐藏内容panel）时的大小（忽略height的拼写）
+        [SerializeField]int m_defaultSize;
+        //--展开Panel时的大小（忽略height）
+        [SerializeField]int m_expandSize;
+
+        [Tooltip("Regist click event of toggle when enable this component")]
+        [SerializeField]bool m_registClick = false;
 
         /// <summary>
         /// Expand detail panel
@@ -36,17 +44,34 @@ namespace Game.UI
             SwitchPanelTo(false);
         }
 
+        /// <summary>
+        /// 在需要时对Toggle的valueChanged进行事件的注册，以实现勾选时的显示/隐藏效果
+        /// </summary>
+        private void OnEnable()
+        {
+            if (m_registClick)
+            {
+                this.GetComponent<Toggle>().onValueChanged.AddListener((isOn) =>
+                    {
+                        if (isOn) 
+                            ShowPanel();
+                        else 
+                            HidePanel();
+                    });
+            }
+        }
+
         private void SwitchPanelTo(bool isOn)
         {
             if (isOn)
             {
                 //switch on
-                SetLayoutHeight(m_expandHeight);
+                SetLayoutHeight(m_expandSize);
             }
             else
             {
                 //off
-                SetLayoutHeight(m_defaultHeight);
+                SetLayoutHeight(m_defaultSize);
             }
 
             m_hidablePanel.gameObject.SetActive(isOn);
@@ -56,8 +81,18 @@ namespace Game.UI
         {
             LayoutElement layout = GetComponent<LayoutElement>();
 
-            layout.preferredHeight = size;
-            layout.minHeight = size;
+            switch(m_hideDirection)
+            {
+                case HideDirection.Vertical:
+                    layout.preferredHeight = size;
+                    layout.minHeight = size;
+                    break;
+
+                case HideDirection.Horizontal:
+                    layout.preferredWidth = size;
+                    layout.minWidth = size;
+                    break;
+            }
         }
 	}
 }

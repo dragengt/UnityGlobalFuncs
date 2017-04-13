@@ -32,7 +32,7 @@ namespace Game.UI
         }
 
         /// <summary>
-        /// 获得Transform的子物体（及其后代）中第一个含有该名字的物体。适用于需要深度搜索的情况
+        /// DFS查找，获得Transform的子物体（及其后代）中第一个含有该名字的物体。适用于需要深度搜索的情况
         /// </summary>
         /// <param name="childObjName">子物体的名字</param>
         public static RectTransform GetChildByName(this RectTransform parent, string childObjName)

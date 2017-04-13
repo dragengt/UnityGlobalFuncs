@@ -10,3 +10,6 @@
                 
                 () => action2
                 );
+
+2017年4月13日23:17:20
+	PanelHidable增加了运行时时注册到Toggle的ValueChanged上的行为；增加了show/hide的expand方向

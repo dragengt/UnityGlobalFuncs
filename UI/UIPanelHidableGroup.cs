@@ -4,11 +4,12 @@ using System.Collections.Generic;
 
 namespace Game.UI
 {
-    [RequireComponent(typeof (VerticalLayoutGroup))]
+    //[RequireComponent(typeof (VerticalLayoutGroup))]
     [RequireComponent(typeof (ToggleGroup))]
     /// <summary>
-    /// 可隐藏Panel的管理器,类似于toggleGroup，添加于父物体即可；
+    /// 可隐藏Panel的管理器,类似于toggleGroup，对其添加批量子物体时，会对子物体进行一次设置：指定toggleGroup；
     /// </summary>
+    ///<remarks>一般地，该组件不应该被拖拽生成，而且在拖拽时推荐使用ToggleGroup而不是本组件。本组件只是部分方便代码创建可隐藏式panel</remarks>
 	class UIPanelHidableGroup:MonoBehaviour
 	{
         //--当前group下选择中的id

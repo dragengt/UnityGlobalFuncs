@@ -54,7 +54,6 @@ namespace Game.UI.Component
             //否则予以移动：
             //--更新移动视图
             m_rectTransform.anchoredPosition = newPos;
-            
         }
 
 

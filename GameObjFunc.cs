@@ -2,9 +2,9 @@
 using System.Collections;
 
 public delegate void CallbackFunc();
+public delegate void CallbackFuncWithInt(int param);
 public delegate void CallbackFuncWithBool(bool param);
 public delegate void CallbackFuncWithGameObj(GameObject param);
-public delegate void CallbackFuncWithTransform(Transform param);
 public delegate void CallbackFuncWithVector3(Vector3 param);
 public delegate void CallbackFuncWithCollider(Collider param);
 
