@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 namespace Game.UI
 {
+    [AddComponentMenu("Layout/UIHidable")]
     [RequireComponent(typeof(LayoutElement))]
     [RequireComponent(typeof(Toggle))]
-
     /// <summary>
     /// 利用Toggle实现的抽屉式Panel，点击时可变换大小。
     /// </summary>
@@ -59,6 +59,10 @@ namespace Game.UI
                             HidePanel();
                     });
             }
+
+            //hide the panel 
+            HidePanel();
+
         }
 
         private void SwitchPanelTo(bool isOn)

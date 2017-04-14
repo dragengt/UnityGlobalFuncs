@@ -5,9 +5,15 @@ using UnityEngine.EventSystems;
 
 namespace Game.UI.Component
 {
-
+    [AddComponentMenu("Layout/UIDragable")]
     public class GameUIDragable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 	{
+        [Tooltip("should align to grid when drag over?")]
+        /// <summary>
+        /// 是否对齐到网格上，对到0时即为不对齐。0值以上，即为位置会吸附到取整的单元格上
+        /// </summary>
+        [SerializeField]uint m_alignToGrid = 0;
+
         RectTransform m_rectTransform;
 
         Vector2 m_rectTransAnchoredPos;
@@ -38,6 +44,16 @@ namespace Game.UI.Component
             }
         }
 
+        //--开始拖拽
+        public void OnPointerDown(PointerEventData data)
+        {
+            //开始拖拽时记录鼠标位置
+            m_DragStartPos = data.position;
+            //记录当前Rect位置
+            m_rectTransAnchoredPos = m_rectTransform.anchoredPosition;
+            //允许拖拽
+            m_isValidDrag = true;
+        }
 
         //继承函数：Drag时触发
         public void OnDrag(PointerEventData data)
@@ -56,22 +72,20 @@ namespace Game.UI.Component
             m_rectTransform.anchoredPosition = newPos;
         }
 
-
+        //拖拽完成
         public void OnPointerUp(PointerEventData data)
         {
             //标记移动结束：
             m_isValidDrag = false;
+
+            if (m_alignToGrid > 0)
+            {
+                Vector2 vPos = m_rectTransform.anchoredPosition;
+                vPos.x = (int)vPos.x / m_alignToGrid * m_alignToGrid;
+                vPos.y = (int)vPos.y / m_alignToGrid * m_alignToGrid;
+                m_rectTransform.anchoredPosition = vPos;
+            }
         }
 
-
-        public void OnPointerDown(PointerEventData data)
-        {
-            //开始拖拽时记录鼠标位置
-            m_DragStartPos = data.position;
-            //记录当前Rect位置
-            m_rectTransAnchoredPos = m_rectTransform.anchoredPosition;
-            //允许拖拽
-            m_isValidDrag = true;
-        }
 	}
 }
