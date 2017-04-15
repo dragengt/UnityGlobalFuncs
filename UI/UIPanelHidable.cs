@@ -69,8 +69,12 @@ namespace Game.UI
         {
             if (isOn)
             {
-                //switch on
-                SetLayoutHeight(m_expandSize);
+                //允许不填写expandSize，默认开启Object即可
+                if (m_expandSize > 0)
+                {
+                    //switch on
+                    SetLayoutHeight(m_expandSize);
+                }
             }
             else
             {
