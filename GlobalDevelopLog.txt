@@ -13,3 +13,7 @@
 
 2017年4月13日23:17:20
 	PanelHidable增加了运行时时注册到Toggle的ValueChanged上的行为；增加了show/hide的expand方向
+
+2017年4月17日22:29:03
+	UIDragable添加了重复Click以取消Click的行为：避免了drag后在同一UI上导致UI被Click的行为；
+	TODO：UIDragable需要精确跟踪位置改变：
