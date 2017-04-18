@@ -258,7 +258,10 @@ public class MyInput : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
 
     }
 
-
+    /// <summary>
+    /// 判断是否在UI上，但是反之不定在游戏物体上；
+    /// </summary>
+    /// <returns></returns>
     public static bool IsMouseOnUI()
     {
         if (

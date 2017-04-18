@@ -62,7 +62,6 @@ namespace Game.UI
 
             //hide the panel 
             HidePanel();
-
         }
 
         private void SwitchPanelTo(bool isOn)

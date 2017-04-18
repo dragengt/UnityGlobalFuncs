@@ -81,7 +81,7 @@ public class GameObjFunc
     /// <summary>
     /// 协程：移动一个物体到指定位置
     /// </summary>
-    public static IEnumerator IMoveUIToRectTransPos(Transform srcRT, Vector3 targetPos,float moveTime = 1, CallbackFunc onDone = null)
+    public static IEnumerator IMoveTransToPos(Transform srcRT, Vector3 targetPos,float moveTime = 1, CallbackFunc onDone = null)
     {
         
         float timePassed = 0F;
